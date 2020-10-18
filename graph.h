@@ -13,6 +13,18 @@ Agent getAgent(vector<Agent> agents, int ID)
 	}
 }
 
+// Check if two agents are connected
+bool agentsConnection(vector <pair<Agent, float> > adj[], int u, int v)
+{
+	for (auto it = adj[u-1].begin(); it!=adj[u-1].end(); it++)
+	{
+		int n = (it->first).getID();
+		if (n == v) return true;
+	}
+
+	return false;
+}
+
 // To add an edge
 void addEdge(vector <pair<Agent, float> > adj[], Agent agent1, Agent agent2, float wt)
 {
@@ -21,6 +33,43 @@ void addEdge(vector <pair<Agent, float> > adj[], Agent agent1, Agent agent2, flo
 
     adj[ID1].push_back(make_pair(agent2, wt));
     adj[ID2].push_back(make_pair(agent1, wt));
+}
+
+// Remove edge
+void removeEdge(vector <pair<Agent, float> > adj[], int u, int v)
+{
+	int n,c;
+
+	if ( agentsConnection(adj, u, v) )
+	{
+		c = 0;
+		for (auto it = adj[u-1].begin(); it!=adj[u-1].end(); it++)
+		{
+			n = (it->first).getID();
+			cout << "in removeEdge: n = " << n << endl;
+			if (n == v) 
+			{
+				adj[u-1].erase(it); 
+				break;
+			}
+
+			++c;
+		}
+
+		c = 0;
+		for (auto it = adj[v-1].begin(); it!=adj[v-1].end(); it++)
+		{
+			n = (it->first).getID();
+			cout << "in removeEdge: n = " << n << endl;
+			if (n == u) 
+			{
+				adj[v-1].erase(it); 
+				break;
+			}
+
+			++c;
+		}
+	}
 }
 
 // Create a Graph
