@@ -2,45 +2,26 @@
 #include <vector>
 #include <array>
 #include <bits/stdc++.h> 
+#include "agent.h" // header in local directory
+#include "graph.h" // header in local directory
+
 using namespace std;
 
-vector< vector<int> > create_CS()
+void Agent::displayAgent()
 {
-	vector< vector<int> > CS;
-
-	vector<int> v1;
-	vector<int> v2{4,5,6};
-	vector<int> v3{7,8,9};
-	vector<int> v4{0,3,6};
-
-	v1.push_back(1); v1.push_back(2); v1.push_back(3); 
-
-	CS = {v1, v2, v3, v4 };
-	
-	return CS;
-} 
+    string gndr = (gender == true) ? "Male" : "Female";
+    cout << "Agent: " << id << "\n\tGender: " << gndr << "\n\tSociability: " << sociable << "\n\tPoliteness: " << polite << "\n\tPrim: " << prim << endl;
+}
+ 
 
 int main ()
 {
-	// int members = 5;
+	int V = 48;
+	vector<Agent> agents;
+	vector<pair<Agent, float> > adj[V];
 
-	// vector< vector<int> > CS;
-
-	// CS = create_CS();
- // 	// int num = CS.size();
- // 	int num = 50;
- // 	int num_coals = num / members;
-
- // 	if( num % members == 0)
- // 	{
- // 		cout << "Total number of coalitions is " << num_coals << endl;
- // 	}
- // 	else
- // 	{
- // 		cout << "Total number of coalitions is " << num_coals + 1 << endl;
- // 	}
-	
-
+	create_graph(agents, adj, V);
+	printGraph(adj, V);
 
 	return 0;
 }
