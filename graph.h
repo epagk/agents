@@ -41,7 +41,6 @@ void addEdge(vector <pair<Agent, float> > adj[], Agent agent1, Agent agent2, flo
 void removeEdge(vector <pair<Agent, float> > adj[], int u, int v)
 {
 	int n,c;
-	cout << "remove edge (" << u << ", " << v << ")" << endl;
 
 	if ( agentsConnection(adj, u, v) )
 	{

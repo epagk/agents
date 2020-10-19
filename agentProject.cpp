@@ -132,13 +132,6 @@ int main()
 	cout << "\nValue of coalition: " << coalition_value(adj, coal) << endl;
 
 	coalition_rate(agents, adj, coal);
-
-	// cout << "1,2: " << agentsConnection(adj, 1, 2) << endl;
-	// cout << "9,10: " << agentsConnection(adj, 9, 10) << endl;
-	// cout << "25,30: " << agentsConnection(adj, 25, 30) << endl;
-	// cout << "25,28: " << agentsConnection(adj, 25, 28) << endl;
-	// cout << "25,35: " << agentsConnection(adj, 25, 35) << endl;
-	// cout << "30,35: " << agentsConnection(adj, 30, 35) << endl;
 	printGraph(adj, V);
 
 	return 0;
