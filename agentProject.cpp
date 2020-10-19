@@ -109,7 +109,7 @@ void coalition_rate(vector<Agent> agents, vector <pair<Agent, float> > adj[], ve
 			}
 			else
 			{
-				// if ( product > 0.5 ) { addEdge(adj, getAgent(agents, v),  getAgent(agents, u), product);  }
+				if ( product > 0.5 ) { addEdge(adj, getAgent(agents, v),  getAgent(agents, u), product);  }
 			}
 
 		}
@@ -123,14 +123,14 @@ int main()
 	srand ( time(NULL) );
 
 	int V = 48;
-	vector<Agent> agents;
-	vector<pair<Agent, float> > adj[V];
 
-	create_graph(agents, adj, V);
+	vector<pair<Agent, float> > adj[V];
+	vector<Agent> agents = create_graph(adj, V);
 	// printGraph(adj, V);
 
 	vector<int> coal{25, 28, 30, 35};	// Just the IDs of agents 
 	cout << "\nValue of coalition: " << coalition_value(adj, coal) << endl;
+
 	coalition_rate(agents, adj, coal);
 
 	// cout << "1,2: " << agentsConnection(adj, 1, 2) << endl;

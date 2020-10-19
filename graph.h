@@ -4,6 +4,8 @@
 
 using namespace std;
 
+extern vector<pair<Agent, float> > adj[48];
+
 Agent getAgent(vector<Agent> agents, int ID)
 {
 	for (auto it = agents.begin(); it!=agents.end(); it++)
@@ -39,6 +41,7 @@ void addEdge(vector <pair<Agent, float> > adj[], Agent agent1, Agent agent2, flo
 void removeEdge(vector <pair<Agent, float> > adj[], int u, int v)
 {
 	int n,c;
+	cout << "remove edge (" << u << ", " << v << ")" << endl;
 
 	if ( agentsConnection(adj, u, v) )
 	{
@@ -46,7 +49,6 @@ void removeEdge(vector <pair<Agent, float> > adj[], int u, int v)
 		for (auto it = adj[u-1].begin(); it!=adj[u-1].end(); it++)
 		{
 			n = (it->first).getID();
-			cout << "in removeEdge: n = " << n << endl;
 			if (n == v) 
 			{
 				adj[u-1].erase(it); 
@@ -60,7 +62,6 @@ void removeEdge(vector <pair<Agent, float> > adj[], int u, int v)
 		for (auto it = adj[v-1].begin(); it!=adj[v-1].end(); it++)
 		{
 			n = (it->first).getID();
-			cout << "in removeEdge: n = " << n << endl;
 			if (n == u) 
 			{
 				adj[v-1].erase(it); 
@@ -73,8 +74,10 @@ void removeEdge(vector <pair<Agent, float> > adj[], int u, int v)
 }
 
 // Create a Graph
-void create_graph(vector<Agent> agents, vector<pair<Agent,float> > adj[], int V)
+vector<Agent> create_graph(vector<pair<Agent,float> > adj[], int V)
 {
+	vector<Agent> agents;
+
 	// Init the agents
 	for (int i = 1; i < V+1; ++i)
 	{
@@ -116,6 +119,8 @@ void create_graph(vector<Agent> agents, vector<pair<Agent,float> > adj[], int V)
     addEdge(adj, getAgent(agents, 41), getAgent(agents, 42), 0.6); 	 addEdge(adj, getAgent(agents, 42), getAgent(agents, 43), 0.3); 	
     addEdge(adj, getAgent(agents, 44), getAgent(agents, 45), 0.4); 	 addEdge(adj, getAgent(agents, 40), getAgent(agents, 47), 0.6);
     addEdge(adj, getAgent(agents, 47), getAgent(agents, 48), 0.7);
+
+    return agents;
 }
 
 // Print adjacency list representation of graph
